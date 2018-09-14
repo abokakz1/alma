@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<channel>
+<title>Телеканал "Алматы" онлайн</title>
+<link>https://almaty.tv/</link>
+<description>Ежедневная иллюстрированная московская общественно-политическая газета.</description>
+<yandex:analytics type="Yandex" id="00000000"></yandex:analytics>
+
+<item turbo="true">
+<title>Яндекс ищет на президентском сайте</title>
+<link>http://www.rossiyskie-novosti.ru/2003/03/25/yandex.html</link>
+<pdalink>http://www.m.rossiyskie-novosti.ru/2003/03/25/yandex.html</pdalink>
+<description>Программный продукт Яndex.Site установлен на официальном сайте президента России</description>
+<author>Иван Петров</author>
+<category>Технологии</category>
+<enclosure url="http://www.rossiyskie-novosti.ru/2003/03/25/yandex.jpg" type="image/jpeg"/>
+<enclosure url="http://www.rossiyskie-novosti.ru/2003/03/25/yandex1.jpg" type="image/jpeg"/>
+<enclosure url="http://www.rossiyskie-novosti.ru/video/100237" type="video/x-ms-asf"/>
+<pubDate>Sun, 29 Sep 2002 19:59:01 +0300</pubDate>
+<yandex:genre>message</yandex:genre>
+<yandex:full-text>Для поиска по сайту
+www.kremlin.ru выбрана программа Яndex.Site. Этот программный продукт был исследован провайдером президентского сайта
+— Федеральным агентством правительственной связи и информации. ФАПСИ сочло возможным использование поисковой системы
+&lt;Яндекса&gt; на
+www.kremlin.ru. По результатам исследования программа была скомпилирована, протестирована и установлена на сайт.</yandex:full-text>
+<yandex:related>
+<link url="http://www.rossiyskie-novosti.ru/2002/10/11/yandex-start.html" img="http://www.rossiyskie-novosti.ru/yndx-
+old-logo.jpg">Новый сервис Яндекса</link>
+<link url="http://www.rossiyskie-novosti.ru/2002/12/05/new-internet-giants.html" img="http://www.rossiyskie-
+novosti.ru/searchengines-compilation.png">Новые игроки на рынке e-commerce</link>
+</yandex:related>
+</item>
+</channel>
+</rss>

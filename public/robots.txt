@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Host: https://almaty.tv
+Sitemap: https://almaty.tv/sitemap.xml
