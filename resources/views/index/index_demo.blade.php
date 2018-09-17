@@ -2,7 +2,7 @@
 
 @section('content')
     <link href="{{ asset('css/events_style.css') }}" rel="stylesheet">
-    <?php 
+    <?php
     use App\Models\Advertisement;
     ?>
     <div class="container-fluid bg-gray-light">
@@ -17,7 +17,7 @@
                                         <?php $i = 0; ?>
                                         @foreach($kz_news_row as $key => $main_news_item)
                                             <?php $i++; ?>
-                                            <li @if($i == 1) class="active" @endif data-slide-to="{{$i-1}}" data-target="#homepage-news-carousel"></li>                
+                                            <li @if($i == 1) class="active" @endif data-slide-to="{{$i-1}}" data-target="#homepage-news-carousel"></li>
                                         @endforeach
                                     @endif
                                 </ol>
@@ -25,9 +25,9 @@
                                     @if(count($kz_news_row) > 0)
                                         <?php $i = 0; ?>
                                         @foreach($kz_news_row as $key => $main_news_item)
-                                            
+
                                                     <?php $i++; ?>
-                                                    
+
 
                                                     <div class="item @if($i == 1) active @endif">
                                                         <div class="card card-lg card-fixed">
@@ -70,8 +70,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
-                                            
+
+
                                         @endforeach
                                     @endif
                                 </div>
@@ -101,25 +101,25 @@
                                                         @if(property_exists($t, 'date') && property_exists($t, 'view'))
                                                         <div class="leftp">
                                                             <h2>
-                                                              {{ $t->date }} 
+                                                              {{ $t->date }}
                                                               <span class="views ml-20">
                                                               <i class="icon icon-eye-gray mr-5" style="margin-right: 12px;"></i>
                                                               </span>
-                                                              {{ $t->view }}  
+                                                              {{ $t->view }}
                                                             </h2>
                                                         </div>
                                                         @endif
-                                                    </div> 
+                                                    </div>
                                                     @elseif($t->type=='blogs')
                                                     <div class="parttext">
                                                         <div class="leftp">
                                                             @if(property_exists($t, 'date') && property_exists($t, 'view'))
                                                             <h2>
-                                                              {{ $t->date }} 
+                                                              {{ $t->date }}
                                                               <span class="views ml-20">
                                                               <i class="icon icon-eye-gray mr-5" style="margin-right: 12px;"></i>
                                                               </span>
-                                                              {{ $t->view }} 
+                                                              {{ $t->view }}
                                                             </h2>
                                                             @endif
                                                         </div>
@@ -129,7 +129,7 @@
                                                         <div class="leftp">
                                                          @if(property_exists($t, 'date'))
                                                             <h2>
-                                                              {{ $t->date }} 
+                                                              {{ $t->date }}
                                                             </h2>
                                                             @endif
                                                         </div>
@@ -139,8 +139,8 @@
                                         </div>
                                     </div>
                                 @endif
-                                @endforeach            
-                            @endif                                       
+                                @endforeach
+                            @endif
 
 
                                 <?php $i = 0; $bb = 0; ?>
@@ -161,7 +161,7 @@
                                                                         @if($main_news_item['news_category_id'] > 0)
                                                                             <a class="label label-red" onclick="searchByNewsCategory({{$main_news_item['news_category_id']}})">{{$main_news_item['news_category_name_' . App::getLocale()]}}</a>
                                                                         @endif
-                                                                    </li> 
+                                                                    </li>
                                                                 </ul>
                                                                 <div class="dv">
                                                                     <span class="date">{{$main_news_item['date']}}</span>
@@ -180,7 +180,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                            
+
                                         @endif
                                     @endforeach
                                 @endif
@@ -211,7 +211,7 @@
                                 return $string;
                             }
                         }
-                        
+
                         $i = 0;
                     ?>
                     <div class="row">
@@ -262,73 +262,68 @@
                                 $lang_id = 1;
                             }
                             $kz_advertisement_list = App\Models\Advertisement::where("is_main_advertisement","=","4")->where("lang_id","=",$lang_id)->where("is_active","=","1")->get(); ?>
+                            <?php
+                        function get_http_response_code($url) {
+                            $headers = get_headers($url);
+                            return substr($headers[0], 9, 3);
+                        }
+                        $vecherniy_praim_list = App\Models\VideoArchive::LeftJoin("programm_tab","video_archive_tab.programm_id","=","programm_tab.programm_id")->select("video_archive_tab.*", DB::raw('DATE_FORMAT(video_archive_tab.video_archive_date,"%d.%m.%Y") as video_archive_date'), "programm_tab.programm_url_name")->where("video_archive_tab.programm_id","=",232)->orderBy('video_archive_id', 'desc')->take(2)->get();
+                        ?>
                         <?php $programm_advertisement_list = App\Models\Advertisement::where("is_main_advertisement","=","5")->where("lang_id","=",$lang_id)->where("is_active","=","1")->get(); ?>
 
                         <div class="col-md-6 col-sm-6">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
-                                    
-                             <!--    Error 1 -->
-                             @if(count($kz_advertisement_list) > 0)
-                             <?php  $index_ad = rand(0, count($kz_advertisement_list)-1);
-                                    $kz_advertisement_list->toArray();
-                                $kz_advertisement = $kz_advertisement_list[$index_ad]; ?>
-                                        <div class="card media-block">
-                                            <a href="{{$kz_advertisement['link']}}" target="_blank">
-                                                <div class="media-block-img" style="background-image: url('/adv/{{$kz_advertisement['image']}}')"></div>
-                                            </a>
-                                        </div>
-                                    @else
-                                        <div class="card media-block">
-                                            <a href="#">
-                                                <div class="media-block-img" style="background-image: url('/css/images/123321.jpg')">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endif
 
+                             <!--    Error 1 -->
+                             <?php  $index_ad = 0;
+                                        $vecherniy_praim_list->toArray();
+                                        $archive_item = $vecherniy_praim_list[$index_ad]; ?>
+                                 <div class="card media-block">
+                                     <a href="{{ LaravelLocalization::getLocalizedURL( App::getLocale(), "/archive/$archive_item->programm_url_name/$archive_item->video_archive_url_name") }}" target="_blank">
+                                         @if(strlen($archive_item['image']) > 0)
+                                             <div class="media-block-img" style="background-image: url('/video_archive_photo/{{$archive_item['image']}}')">
+                                         @else
+                                              <div class="media-block-img" style="background-image: url('/css/images/videoarchive.jpg')">
+                                         @endif
+
+                                             <h4 style="color:white" class="prime-item-title">{{$archive_item['video_archive_title_' . App::getLocale()]}}</h4>
+                                             <div style="color:white" class="prime-item-date">
+                                                 @if(App::getLocale() == "kz")
+                                                     Шығарылым {{$archive_item['video_archive_date']}} бастап
+                                                 @else
+                                                     Выпуск от {{$archive_item['video_archive_date']}}
+                                                 @endif
+                                             </div>
+                                         </div>
+                                     </a>
+                                 </div>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6">
-                                    
+
                                     <!-- Error 2 -->
-                                    @if(count($programm_advertisement_list) > 0)
-                                    <?php  $index_ad = rand(0, count($programm_advertisement_list)-1);
-                                    $programm_advertisement_list->toArray();
-                                $programm_advertisement = $programm_advertisement_list[$index_ad]; ?>
-                                        <div class="card media-block">
-                                            <div class="media-block-img" style="background-image: url('/adv/{{$programm_advertisement['image']}}')">
-                                                <div class="img-red-gradient">
-                                                </div>
-                                                <div class="media-text">
-                                                    <div class="text-tr">
-                                                        {{--<span>21:00</span><small>Сегодня</small>--}}
-                                                    </div>
-                                                    <div class="text-bl">
-                                                        <h3 class="media-title"><a href="{{$programm_advertisement['link']}}">{{$programm_advertisement['advertisement_title_ru']}}</a></h3>
-                                                        <div class="media-desc">
-                                                            {{$programm_advertisement['advertisement_text_ru']}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="card media-block">
-                                            <div class="media-block-img" style="background-image: url('/css/images/123321.jpg')">
-                                                <div class="media-text">
-                                                    <div class="text-tr">
-                                                        {{--<span>21:00</span><small>Сегодня</small>--}}
-                                                    </div>
-                                                    <div class="text-bl">
-                                                    </div>
+                                    <?php  $index_ad = 1;
+                                    $vecherniy_praim_list->toArray();
+                                    $archive_item = $vecherniy_praim_list[$index_ad]; ?>
+                                    <div class="card media-block">
+                                        <a href="{{ LaravelLocalization::getLocalizedURL( App::getLocale(), "/archive/$archive_item->programm_url_name/$archive_item->video_archive_url_name") }}" target="_blank">
+                                            @if(strlen($archive_item['image']) > 0)
+                                                <div class="media-block-img" style="background-image: url('/video_archive_photo/{{$archive_item['image']}}')">
+                                            @else
+                                                <div class="media-block-img" style="background-image: url('/css/images/videoarchive.jpg')">
+                                            @endif
+                                                <h4 style="color:white" class="prime-item-title">{{$archive_item['video_archive_title_' . App::getLocale()]}}</h4>
+                                                <div style="color:white" class="prime-item-date">
+                                                    @if(App::getLocale() == "kz")
+                                                        Шығарылым {{$archive_item['video_archive_date']}} бастап
+                                                    @else
+                                                        Выпуск от {{$archive_item['video_archive_date']}}
+                                                    @endif
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
-
-
-
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <br>
@@ -362,7 +357,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        
+
                                     @endforeach
                                 @endif
 
@@ -422,7 +417,7 @@
                         </div> -->
                         <div class="event-blog-item-top" style="min-height: 57px">
                             <div class="col-xs-9 no-padding top-different">
-                              <h5>{{trans('messages.События')}}</h5>  
+                              <h5>{{trans('messages.События')}}</h5>
                             </div>
                             <div class="col-xs-3 no-padding">
                                 <a href="/events" style="float: right;"><h4>{{trans('messages.all')}}&nbsp;<i class="fa fa-caret-down" style="line-height:1px" aria-hidden="true"></i></h4></a>
@@ -471,7 +466,7 @@
                         </div>
                         @endforeach
                         <a href="/blogs"><button class="btn-add" >{{ trans('messages.write_blog') }}</button></a>
-                        
+
                     </div>
                 </div>
                 @endif
@@ -567,7 +562,7 @@
                                         @endif
                                     </div>
 <!--                                     <div class="schedule-social">
-                                        
+
                                     </div> -->
                                 </div>
                             </a>
@@ -618,7 +613,7 @@
                                             @endif
                                         </div>
 <!--                                         <div class="schedule-social">
-                                            
+
                                         </div> -->
                                     </div>
                                 </a>
@@ -680,7 +675,7 @@
                                                     @endif
                                                 </div>
 <!--                                                 <div class="schedule-social">
-                                                    
+
                                                 </div> -->
                                             </div>
                                         </a>
@@ -715,7 +710,7 @@
                   @endforeach
                     <button class="nextn"  href="#myCarousel" data-slide="next"><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
                   </ul>
-                  
+
                   <div class="tab-content">
                     @foreach($programs as $key => $program)
                     <div id="menu{{$program->id}}" class="tab-pane fade @if($key==0)in active @endif">
@@ -750,8 +745,8 @@
                     @endforeach
                   </div>
                 </div>
-            </div>            
-        </div>        
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid">
@@ -759,7 +754,7 @@
         <div class="col-md-12">
             <h3 class="choosered">{{ trans('messages.choose_of_redaction') }}</h3>
             <hr>
-        </div>            
+        </div>
         @foreach($favorites as $fav)
         <div class="col-md-3">
             <div class="newscard">
@@ -772,19 +767,19 @@
                         </p>
                     </div>
                 </div>
-            </a> 
+            </a>
             @if($fav->type=='news')
             <div class="parttext">
                 <div class="leftp">
                     <h2>
-                      {{ $fav->date }} 
+                      {{ $fav->date }}
                       <span class="views ml-20">
                       <i class="icon icon-eye-gray mr-5" style="margin-right: 12px;"></i>
                       </span>
-                      {{ $fav->view }}  
+                      {{ $fav->view }}
                     </h2>
                 </div>
-            </div> 
+            </div>
             @elseif($fav->type=='blogs')
             <div class="parttext">
                 <div class="righttp">
@@ -808,7 +803,7 @@
         </div>
         @endforeach
     </div>
-        
+
 </div>
     <style>
         .event-blog-item-top {
@@ -902,8 +897,8 @@
             border-bottom: #B8B8B8 1px solid;
         }
     </style>
-    
-    <script src="/extended_page/js/jquery-1.12.3.min.js"></script>   
+
+    <script src="/extended_page/js/jquery-1.12.3.min.js"></script>
     <script src="/extended_page/js/bootstrap.min.js"></script>
     <script src="/extended_page/js/mask.js"></script>
     <script src="/extended_page/js/script.js"></script>
@@ -1121,7 +1116,7 @@ $(function() {
           }
           return memo;
         }, []);
-    
+
         var currentOpened = document.querySelector('.details');
         if(todaysEvents.length>0){
             getByDayAndCategory(day.format(), this.category, todaysEventsIds);
@@ -1182,7 +1177,7 @@ $(function() {
                 currentOpened.className = 'details out';
               }
         }
-        
+
     }
 
     Calendar.prototype.renderEvents = function(events, ele) {

@@ -64,8 +64,7 @@
             })(document, window, "yandex_metrika_callbacks");
         </script>
         <noscript><div><img src="https://mc.yandex.ru/watch/21005383" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-        @include('mobile')
-        {{-- @include('banner') --}}
+        
         @include('banner_blog')
         <!-- /Yandex.Metrika counter -->
         <div class="wrapper">
