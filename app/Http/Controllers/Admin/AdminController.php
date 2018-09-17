@@ -293,12 +293,16 @@ class AdminController extends Controller
         $news_item->is_has_video = $request->is_has_video;
         $news_item->is_mail_ru = $request->is_mail_ru;
 
-        if(strlen($request->news_title_ru) > 0){
-            $news_item->news_url_name = $this->cyr2lat($request->news_title_ru);
+        if($new_news === 1) {
+            $new_time = str_replace(":","",$request->time);
+            if(strlen($request->news_title_ru) > 0){
+                $news_item->news_url_name = $new_time."-".$this->cyr2lat($request->news_title_ru);
+            }
+            else{
+                $news_item->news_url_name = $new_time."-".$this->cyr2lat($request->news_title_kz);
+            }
         }
-        else{
-            $news_item->news_url_name = $this->cyr2lat($request->news_title_kz);
-        }
+
         if($news_item->save()){
 
             if(isset($request['tag_id'])){
