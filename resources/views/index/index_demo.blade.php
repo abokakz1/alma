@@ -267,7 +267,8 @@
                             $headers = get_headers($url);
                             return substr($headers[0], 9, 3);
                         }
-                        $vecherniy_praim_list = App\Models\VideoArchive::LeftJoin("programm_tab","video_archive_tab.programm_id","=","programm_tab.programm_id")->select("video_archive_tab.*", DB::raw('DATE_FORMAT(video_archive_tab.video_archive_date,"%d.%m.%Y") as video_archive_date'), "programm_tab.programm_url_name")->where("video_archive_tab.programm_id","=",232)->orderBy('video_archive_id', 'desc')->take(2)->get();
+                        $vecherniy_praim_list = App\Models\VideoArchive::LeftJoin("programm_tab","video_archive_tab.programm_id","=","programm_tab.programm_id")->select("video_archive_tab.*", DB::raw('DATE_FORMAT(video_archive_tab.video_archive_date,"%d.%m.%Y") as video_archive_date'), "programm_tab.programm_url_name")->where("video_archive_tab.programm_id","=",232)->orderBy('video_archive_tab.video_archive_date', 'desc')->take(2)->get();
+                        $almaty_history_list = App\Models\VideoArchive::LeftJoin("programm_tab","video_archive_tab.programm_id","=","programm_tab.programm_id")->select("video_archive_tab.*", DB::raw('DATE_FORMAT(video_archive_tab.video_archive_date,"%d.%m.%Y") as video_archive_date'), "programm_tab.programm_url_name")->where("video_archive_tab.programm_id","=",75)->orderBy('video_archive_tab.video_archive_date', 'desc')->take(2)->get();
                         ?>
                         <?php $programm_advertisement_list = App\Models\Advertisement::where("is_main_advertisement","=","5")->where("lang_id","=",$lang_id)->where("is_active","=","1")->get(); ?>
 
@@ -303,9 +304,9 @@
                                 <div class="col-md-6 col-sm-6">
 
                                     <!-- Error 2 -->
-                                    <?php  $index_ad = 1;
-                                    $vecherniy_praim_list->toArray();
-                                    $archive_item = $vecherniy_praim_list[$index_ad]; ?>
+                                    <?php  $index_ad = 0;
+                                    $almaty_history_list->toArray();
+                                    $archive_item = $almaty_history_list[$index_ad]; ?>
                                     <div class="card media-block">
                                         <a href="{{ LaravelLocalization::getLocalizedURL( App::getLocale(), "/archive/$archive_item->programm_url_name/$archive_item->video_archive_url_name") }}" target="_blank">
                                             @if(strlen($archive_item['image']) > 0)
