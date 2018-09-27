@@ -206,6 +206,8 @@
 
 </script>
 
+    <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/9fd32b9f5446ee634184e24f01e3293d_1.js" async></script>
+
 </head>
 @yield('layout')
 

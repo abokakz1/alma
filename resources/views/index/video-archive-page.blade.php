@@ -48,7 +48,8 @@
 
     <section class="related-videos bg-gray-light">
         <div class="container">
-            <h4 class="related-videos-title">{{trans("messages.Другое видео")}}</h4>
+            <h4 class="related-videos-title">
+                <a href="{{ LaravelLocalization::getLocalizedURL(App::getLocale(), "/programms/".$row['programm_url_name']) }}"> {{trans("messages.Другое видео")}}</a></h4>
 
             <div class="row row-lg">
                 <?  use App\Models\VideoArchive;
