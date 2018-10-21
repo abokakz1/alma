@@ -203,7 +203,7 @@
                                             <input type="text" class="input-small timepicker" style="width: 75px;" name="time" value="{{substr($row->date,12,2)}}:{{substr($row->date,15,2)}}:{{substr($row->date,18,2)}}"/>
                                         @else
                                             <?php $offset= strtotime("+6 hours 0 minutes");  ?>
-                                            <input type="text" class="input-small timepicker" style="width: 75px;" name="time" value="{{date("H:i:s",$offset)}}"/>
+                                            <input type="text" class="input-small timepicker" style="width: 75px;" name="time" value="{{date("H:i:s")}}"/>
                                         @endif
 
                                         <span class="add-on">
